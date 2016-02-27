@@ -1,7 +1,12 @@
 # scrape
-Quickly scrape web pages from the command line. Outputs results to stdout.
+Quickly scrape web pages from the command line. Outputs results to stdout. Essentially a cli wrapper for goquery.
 
-## Example
+## Installation
+```bash
+go install github.com/csu/scrape
+```
+
+## Usage
 ```bash
 $ scrape http://christopher.su ".home-nav span"
 resume
