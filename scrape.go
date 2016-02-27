@@ -4,6 +4,7 @@ import (
   "fmt"
   "log"
   "os"
+  "strings"
 
   "github.com/codegangsta/cli"
   "github.com/PuerkitoBio/goquery"
@@ -39,8 +40,13 @@ func main() {
           res[j] = append(res[j], s.Text())
         })
       }
-      // TODO: print pretty output
-      fmt.Println(res)
+
+      for _, elem := range res {
+        for _, item := range elem {
+          fmt.Println(strings.TrimSpace(item))
+        }
+        fmt.Println("==========")
+      }
     }
   }
   app.Run(os.Args)
