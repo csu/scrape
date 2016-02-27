@@ -39,6 +39,7 @@ func main() {
           res[j] = append(res[j], s.Text())
         })
       }
+      // TODO: print pretty output
       fmt.Println(res)
     }
   }
