@@ -17,16 +17,30 @@ func main() {
   app.Author = "Christopher Su"
   app.Email = "code@christopher.su"
   app.Action = func(c *cli.Context) {
-    if len(c.Args()) != 2 {
-      log.Fatal("Need 2 arguments.")
+    argCount := len(c.Args())
+    if argCount < 2 {
+      log.Fatal("Need at least 2 arguments.")
     }
     doc, err := goquery.NewDocument(c.Args()[0]) 
     if err != nil {
       log.Fatal(err)
     }
-    doc.Find(c.Args()[1]).Each(func(i int, s *goquery.Selection) {
-      fmt.Println(s.Text())
-    })
+    if argCount == 2 {
+      doc.Find(c.Args()[1]).Each(func(i int, s *goquery.Selection) {
+        fmt.Println(s.Text())
+      })
+    } else {
+      res := [][]string{}
+      for i := 1; i < argCount; i++ {
+        doc.Find(c.Args()[i]).Each(func(j int, s *goquery.Selection) {
+          if j+1 > len(res) {
+            res = append(res, []string{})
+          }
+          res[j] = append(res[j], s.Text())
+        })
+      }
+      fmt.Println(res)
+    }
   }
   app.Run(os.Args)
 }
