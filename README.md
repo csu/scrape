@@ -16,3 +16,12 @@ github
 list
 grid
 ```
+
+```bash
+$ scrape help
+NAME:
+   scrape - scrapes a web page for a given selector
+
+USAGE:
+   scrape [url] [selector]
+```
